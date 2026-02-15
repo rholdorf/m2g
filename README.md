@@ -3,10 +3,12 @@
 Pipeline offline para converter Mixamo FBX em GLB separado por animação.
 
 Entrada:
+
 - 1 FBX de personagem com skin (`--character`)
 - N FBXs de animação (`--anims`)
 
 Saída:
+
 - `<character>.glb`: mesh + skeleton, sem animações
 - `<anim>.glb`: skeleton + 1 clip (mesh opcional)
 - `report.json`: validações, correções e métricas de bake/export
@@ -99,11 +101,13 @@ Executável Blender usado no projeto:
 ## report.json (campos principais)
 
 Em `character`:
+
 - `bone_rename`
 - `root.created`
 - `weights.limited_on_meshes`
 
 Em cada item de `anims`:
+
 - `compat`: compatibilidade entre rig base e rig da animação
 - `bake`:
   - `frame_start`, `frame_end`
@@ -133,10 +137,3 @@ Em cada item de `anims`:
 - Animação incompatível / distorcida
   - Verifique `report.json -> anims[*].compat`.
   - Regra prática: usar animações geradas para o mesmo personagem Mixamo.
-
-## Próximos passos (runtime)
-
-- Importar os GLBs no runtime MonoGame
-- Construir `Skeleton`, `AnimationClip`, `Animator`
-- Implementar GPU skinning + blending
-
