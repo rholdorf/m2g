@@ -38,6 +38,7 @@
    ./input/anims/left_strafe_walk.fbx \
    ./input/anims/left_strafe.fbx \
    ./input/anims/catwalk_walk_forward.fbx \
+   ./input/anims/catwalk_walking.fbx \
    ./input/anims/walking.fbx \
    ./input/anims/running.fbx \
    --out ./output \

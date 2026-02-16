@@ -878,6 +878,9 @@ def make_inplace_on_action(base_arm, action, ground_lock=True, anchor="hips"):
             else:
                 if shift_curve_to_zero_start(hips_by_axis[hips_vert]):
                     changed = True
+            # Remove any remaining vertical drift so the loop closes cleanly.
+            if remove_residual_end_drift(hips_by_axis[hips_vert]):
+                changed = True
 
         result["status"] = "applied_fallback" if changed else "already_inplace_fallback"
     else:
