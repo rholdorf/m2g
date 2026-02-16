@@ -1,0 +1,29 @@
+graph LR
+    subgraph Maya_Environment [Maya Environment]
+        User[Maya User] -->|Loads Plugin| Init["__init__.py"]
+    end
+
+    subgraph Interface_Layer [Interface Layer]
+        Init --> UI["ui.py (The Frontend)"]
+        UI -->|Calls| Core["core.py (The Orchestrator)"]
+    end
+
+    subgraph Logic_Layer [Logic Layer]
+        Core -->|Uses| Utils["maya_utils.py (API Wrappers)"]
+        Core -->|Formats| GLTF["gltf.py (JSON Builder)"]
+        
+        %% Shared Resources
+        Core -.-> Const["constants.py"]
+        GLTF -.-> Const["constants.py"]
+        UI -.-> Const["constants.py"]
+    end
+
+    subgraph Maya_External_API [Maya Internal API]
+        Utils -->|cmds.ls / cmds.getAttr| MayaCmds["maya.cmds"]
+        Utils -->|cmds.exportSelected| Export["Maya Export Engine"]
+    end
+
+    %% Descriptions for clarity
+    By Felipe Carvajal Brown
+    click UI href "https://github.com/rholdorf/m2g/blob/master/scripts/m2g/ui.py" "View UI Code"
+    click Core href "https://github.com/rholdorf/m2g/blob/master/scripts/m2g/core.py" "View Core Code"
