@@ -1,0 +1,16 @@
+graph LR
+    A[Mixamo] -->|FBX Animado| B(Maya)
+    subgraph Maya_Process [Processamento no Maya]
+        B --> B1[Ajuste de Rig]
+        B --> B2[Fusão de Clipes]
+        B --> B3[Materiais PBR]
+    end
+    B3 -->|Script m2g| C[Arquivo .glTF / .GLB]
+    C --> D{Destino Final}
+    D --> D1[Web: Three.js / Babylon]
+    D --> D2[Engine: Unity / Godot]
+    D --> D3[Realidade Aumentada]
+
+    style A fill:#ff9a00,stroke:#333,color:white
+    style B fill:#00c5ff,stroke:#333,color:white
+    style C fill:#00ff00,stroke:#333,color:black
